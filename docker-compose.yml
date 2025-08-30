@@ -4,7 +4,7 @@ services:
   ytdlp-api:
     build: .
     ports:
-      - "8000:8000"
+      - "30022:30022"
     environment:
       - PYTHONUNBUFFERED=1
     restart: unless-stopped
@@ -14,3 +14,9 @@ services:
       timeout: 10s
       retries: 3
       start_period: 40s
+    networks:
+      - dokploy
+
+networks:
+  dokploy:
+    external: true
