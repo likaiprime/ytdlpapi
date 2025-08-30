@@ -32,3 +32,5 @@ services:
 networks:
   ytdlpapi-network:
     driver: bridge
+  dokploy:
+    external: true
