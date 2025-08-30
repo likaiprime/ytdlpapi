@@ -1,4 +1,3 @@
-version: '3.8'
 
 services:
   ytdlp-api:
@@ -18,6 +17,8 @@ services:
         CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "30022"]
     ports:
       - "30022:30022"
+    networks:
+      - ytdlpapi-network
     environment:
       - PYTHONUNBUFFERED=1
     restart: unless-stopped
@@ -27,3 +28,7 @@ services:
       timeout: 10s
       retries: 3
       start_period: 40s
+
+networks:
+  ytdlpapi-network:
+    external: true
