@@ -31,4 +31,4 @@ services:
 
 networks:
   ytdlpapi-network:
-    external: true
+    driver: bridge
