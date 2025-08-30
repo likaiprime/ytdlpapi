@@ -18,7 +18,7 @@ services:
     ports:
       - "30022:30022"
     networks:
-      - ytdlpapi-network
+      - ytdlpapi
     environment:
       - PYTHONUNBUFFERED=1
     restart: unless-stopped
@@ -30,7 +30,7 @@ services:
       start_period: 40s
 
 networks:
-  ytdlpapi-network:
+  ytdlpapi:
     driver: bridge
   dokploy:
     external: true
