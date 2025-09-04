@@ -22,6 +22,8 @@ class VideoFormat(BaseModel):
     vcodec: Optional[str] = None
     acodec: Optional[str] = None
     fps: Optional[float] = None
+    http_headers: Optional[Dict[str, str]] = None
+    cookies: Optional[str] = None
 
 class AudioFormat(BaseModel):
     format_id: str
@@ -30,6 +32,8 @@ class AudioFormat(BaseModel):
     url: str
     acodec: Optional[str] = None
     abr: Optional[float] = None
+    http_headers: Optional[Dict[str, str]] = None
+    cookies: Optional[str] = None
 
 class VideoInfo(BaseModel):
     title: str
@@ -79,7 +83,9 @@ def parse_formats(formats: List[Dict]) -> tuple[List[VideoFormat], List[AudioFor
                 url=fmt.get('url', ''),
                 vcodec=fmt.get('vcodec'),
                 acodec=fmt.get('acodec'),
-                fps=fmt.get('fps')
+                fps=fmt.get('fps'),
+                http_headers=fmt.get('http_headers'),
+                cookies=fmt.get('cookies')
             )
             video_formats.append(video_format)
         elif fmt.get('acodec') != 'none' and fmt.get('vcodec') == 'none':  # Audio only format
@@ -89,7 +95,9 @@ def parse_formats(formats: List[Dict]) -> tuple[List[VideoFormat], List[AudioFor
                 filesize=fmt.get('filesize'),
                 url=fmt.get('url', ''),
                 acodec=fmt.get('acodec'),
-                abr=fmt.get('abr')
+                abr=fmt.get('abr'),
+                http_headers=fmt.get('http_headers'),
+                cookies=fmt.get('cookies')
             )
             audio_formats.append(audio_format)
     
